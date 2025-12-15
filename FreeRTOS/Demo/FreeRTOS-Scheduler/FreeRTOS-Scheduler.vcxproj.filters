@@ -15,24 +15,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\customScheduler\scheduler.h">
+    <ClInclude Include="customScheduler\scheduler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\customScheduler\scheduling-algorithms.h">
+    <ClInclude Include="customScheduler\scheduling-algorithms.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\customScheduler\task.h">
+    <ClInclude Include="customScheduler\task.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\scheduler.c">
+    <ClCompile Include="scheduler.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\scheduling-algorithms.c">
+    <ClCompile Include="scheduling-algorithms.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\task.c">
+    <ClCompile Include="task.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

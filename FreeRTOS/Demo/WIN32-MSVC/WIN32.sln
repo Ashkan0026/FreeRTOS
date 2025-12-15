@@ -4,6 +4,8 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RTOSDemo", "WIN32.vcxproj", "{C686325E-3261-42F7-AEB1-DDE5280E1CEB}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FreeRTOS-Scheduler", "..\FreeRTOS-Scheduler\FreeRTOS-Scheduler.vcxproj", "{A74558C7-BF23-4FD2-A0F5-37F8C4215A03}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -14,6 +16,10 @@ Global
 		{C686325E-3261-42F7-AEB1-DDE5280E1CEB}.Debug|Win32.Build.0 = Debug|Win32
 		{C686325E-3261-42F7-AEB1-DDE5280E1CEB}.Debug|x64.ActiveCfg = Debug|x64
 		{C686325E-3261-42F7-AEB1-DDE5280E1CEB}.Debug|x64.Build.0 = Debug|x64
+		{A74558C7-BF23-4FD2-A0F5-37F8C4215A03}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A74558C7-BF23-4FD2-A0F5-37F8C4215A03}.Debug|Win32.Build.0 = Debug|Win32
+		{A74558C7-BF23-4FD2-A0F5-37F8C4215A03}.Debug|x64.ActiveCfg = Debug|x64
+		{A74558C7-BF23-4FD2-A0F5-37F8C4215A03}.Debug|x64.Build.0 = Debug|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -161,6 +161,11 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FreeRTOS-Scheduler\FreeRTOS-Scheduler.vcxproj">
+      <Project>{a74558c7-bf23-4fd2-a0f5-37f8c4215a03}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

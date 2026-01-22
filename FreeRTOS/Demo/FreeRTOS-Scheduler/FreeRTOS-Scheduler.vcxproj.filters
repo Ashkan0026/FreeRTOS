@@ -24,6 +24,9 @@
     <ClInclude Include="customScheduler\task.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="sim_config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scheduler.c">

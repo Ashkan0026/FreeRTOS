@@ -51,6 +51,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
+#include "SimulationCore.h"
 
 #ifdef WIN32_LEAN_AND_MEAN
     #include "winsock2.h"
@@ -79,7 +80,7 @@
  * If mainCREATE_SIMPLE_BLINKY_DEMO_ONLY is not 1 then the comprehensive test and
  * demo application will be built.  The comprehensive test and demo application is
  * implemented and described in main_full.c. */
-#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY    0
+#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY    1
 
 /* This demo uses heap_5.c, and these constants define the sizes of the regions
  * that make up the total heap.  heap_5 is only used for test and example purposes
@@ -97,6 +98,19 @@
 
 /* This demo allows to save a trace file. */
 #define mainTRACE_FILE_NAME                   "Trace.dump"
+
+/* Windows simulator: allocating a few MB is totally fine.
+   Pick 8–32 MB depending on how many demo tasks + your tasks you create. */
+#define APP_HEAP_BYTES   ( 16u * 1024u * 1024u )  /* 16 MB */
+
+   /* Make sure the heap buffer is aligned to portBYTE_ALIGNMENT */
+#if defined(__GNUC__)
+static uint8_t ucHeap[APP_HEAP_BYTES] __attribute__((aligned(portBYTE_ALIGNMENT)));
+#elif defined(_MSC_VER)
+__declspec(align(portBYTE_ALIGNMENT)) static uint8_t ucHeap[APP_HEAP_BYTES];
+#else
+static uint8_t ucHeap[APP_HEAP_BYTES];
+#endif
 
 /*-----------------------------------------------------------*/
 
@@ -194,8 +208,8 @@ int main( void )
 
     configASSERT( xTraceInitialize() == TRC_SUCCESS );
 
-    /* Start the trace recording - the recording is written to a file if
-     * configASSERT() is called. */
+    ///* Start the trace recording - the recording is written to a file if
+    // * configASSERT() is called. */
     printf(
         "Trace started.\r\n"
         "The trace will be dumped to the file \"%s\" whenever a call to configASSERT()\r\n"
@@ -223,17 +237,21 @@ int main( void )
 
     /* The mainCREATE_SIMPLE_BLINKY_DEMO_ONLY setting is described at the top
      * of this file. */
-    #if ( mainCREATE_SIMPLE_BLINKY_DEMO_ONLY == 1 )
-    {
-        printf( "\nStarting the blinky demo.\r\n" );
-        main_blinky();
-    }
-    #else
-    {
-        printf( "\nStarting the full demo.\r\n" );
-        main_full();
-    }
-    #endif /* if ( mainCREATE_SIMPLE_BLINKY_DEMO_ONLY == 1 ) */
+    //#if ( mainCREATE_SIMPLE_BLINKY_DEMO_ONLY == 1 )
+    //{
+    //    printf( "\nStarting the blinky demo.\r\n" );
+    //    main_blinky();
+    //}
+    //#else
+    //{
+    //    printf( "\nStarting the full demo.\r\n" );
+    //    main_full();
+    //}
+    //#endif /* if ( mainCREATE_SIMPLE_BLINKY_DEMO_ONLY == 1 ) */
+
+    simInit(SCHED_ALGO_EDF);
+
+    vTaskStartScheduler();
 
     return 0;
 }
@@ -380,35 +398,17 @@ static void prvSaveTraceFile( void )
 
 static void prvInitialiseHeap( void )
 {
-/* The Windows demo could create one large heap region, in which case it would
- * be appropriate to use heap_4.  However, purely for demonstration purposes,
- * heap_5 is used instead, so start by defining some heap regions.  No
- * initialisation is required when any other heap implementation is used.  See
- * http://www.freertos.org/a00111.html for more information.
- *
- * The xHeapRegions structure requires the regions to be defined in start address
- * order, so this just creates one big array, then populates the structure with
- * offsets into the array - with gaps in between and messy alignment just for test
- * purposes. */
-    static uint8_t ucHeap[ configTOTAL_HEAP_SIZE ];
-    volatile uint32_t ulAdditionalOffset = 19; /* Just to prevent 'condition is always true' warnings in configASSERT(). */
-    const HeapRegion_t xHeapRegions[] =
+    /* Rules for heap_5:
+    1) Regions must be in ascending address order
+    2) Must be terminated by a NULL,0 entry
+    3) Regions should be aligned (this buffer is aligned above) */
+    static const HeapRegion_t xHeapRegions[] =
     {
-        /* Start address with dummy offsets						Size */
-        { ucHeap + 1,                                          mainREGION_1_SIZE },
-        { ucHeap + 15 + mainREGION_1_SIZE,                     mainREGION_2_SIZE },
-        { ucHeap + 19 + mainREGION_1_SIZE + mainREGION_2_SIZE, mainREGION_3_SIZE },
-        { NULL,                                                0                 }
+        { ucHeap, APP_HEAP_BYTES },
+        { NULL,   0             }
     };
 
-    /* Sanity check that the sizes and offsets defined actually fit into the
-     * array. */
-    configASSERT( ( ulAdditionalOffset + mainREGION_1_SIZE + mainREGION_2_SIZE + mainREGION_3_SIZE ) < configTOTAL_HEAP_SIZE );
-
-    /* Prevent compiler warnings when configASSERT() is not defined. */
-    ( void ) ulAdditionalOffset;
-
-    vPortDefineHeapRegions( xHeapRegions );
+    vPortDefineHeapRegions(xHeapRegions);
 }
 /*-----------------------------------------------------------*/
 

@@ -41,6 +41,9 @@
     <Filter Include="Demo App Source\FreeRTOS+Trace Recorder\include">
       <UniqueIdentifier>{5cb8735d-498f-40aa-bf5c-9d41923b7968}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Demo App Source\Scheduler_Demo">
+      <UniqueIdentifier>{04df4b00-a349-4ed9-a0ea-3744e0c247c3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -166,6 +169,9 @@
     <ClCompile Include="..\Common\Minimal\TaskNotifyArray.c">
       <Filter>Demo App Source\Full_Demo\Common Demo Tasks</Filter>
     </ClCompile>
+    <ClCompile Include="SimulationCore.c">
+      <Filter>Demo App Source\Scheduler_Demo</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FreeRTOSConfig.h">
@@ -227,6 +233,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\FreeRTOS-Plus\Source\FreeRTOS-Plus-Trace\Include\trcKernelPort.h">
       <Filter>Configuration Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SimulationCore.h">
+      <Filter>Demo App Source\Scheduler_Demo</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

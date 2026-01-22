@@ -70,6 +70,14 @@ typedef struct
     uint32_t  jobs_completed;       /**< \brief number of jobs completed from this task*/
     uint32_t  jobs_missed;          /**< \brief number of jobs missed from this task*/
     double    sum_response_time;    /**< \brief sum of response times from this task*/
+
+    // Metrics
+    Tick exec_ticks;                /**< \brief total ticks executed by this task*/
+    uint32_t dispatches;            /**< \brief how many quanta it was chosen to run*/
+    uint32_t preemptions;           /**< \brief times it was running then replaced next tick while still unfinished*/
+    uint32_t deadline_violations;   /**< \brief separate from jobs_missed if you want*/
+    uint32_t net_tx_bytes;          /**< \brief simulated / measured bytes transmitted*/
+    uint32_t net_rx_bytes;          /**< \brief simulated / measured bytes received*/
 } TaskState;
 
 /**

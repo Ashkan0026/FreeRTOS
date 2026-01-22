@@ -20,7 +20,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v145</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -35,6 +35,9 @@
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>C:\Users\Ashkan\Documents\cs project\FreeRTOS-fork\FreeRTOS\FreeRTOS\Demo\FreeRTOS-Scheduler\customScheduler;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Midl>
@@ -135,6 +138,7 @@
     <ClCompile Include="main_blinky.c" />
     <ClCompile Include="main_full.c" />
     <ClCompile Include="Run-time-stats-utils.c" />
+    <ClCompile Include="SimulationCore.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\FreeRTOS-Plus\Source\FreeRTOS-Plus-Trace\Include\trcKernelPort.h" />
@@ -153,6 +157,7 @@
     <ClInclude Include="..\..\Source\include\queue.h" />
     <ClInclude Include="..\..\Source\include\semphr.h" />
     <ClInclude Include="..\..\Source\include\task.h" />
+    <ClInclude Include="SimulationCore.h" />
     <ClInclude Include="Trace_Recorder_Configuration\trcConfig.h" />
     <ClInclude Include="Trace_Recorder_Configuration\trcKernelPortConfig.h" />
     <ClInclude Include="Trace_Recorder_Configuration\trcKernelPortSnapshotConfig.h" />

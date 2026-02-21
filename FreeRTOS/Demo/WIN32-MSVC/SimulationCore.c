@@ -13,6 +13,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "../FreeRTOS-Scheduler/customScheduler/task.h"
+#include "../FreeRTOS-Scheduler/sim_metrics.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -32,24 +33,6 @@ static TaskState    gState[NUM_TASKS];
 static TaskHandle_t gWorkerHandle[NUM_TASKS];
 static TaskHandle_t gDispatcherHandle = NULL;
 static SchedulingAlgoType gPolicy = SCHED_ALGO_EDF;
-
-// ----------------- Global metrics -----------------
-typedef struct {
-    Tick sim_ticks;
-
-    Tick cpu_busy_ticks;
-    Tick cpu_idle_ticks;
-
-    uint64_t energy_run;
-    uint64_t energy_idle;
-    uint64_t energy_sleep;
-
-    uint32_t total_preemptions;
-    uint32_t total_dispatches;
-
-    uint64_t net_tx_bytes;
-    uint64_t net_rx_bytes;
-} SimMetrics;
 
 static SimMetrics gM = { 0 };
 

@@ -27,10 +27,6 @@ void ReleaseTasks(TaskState *taskState, uint8_t numTasks, Tick now);
  */
 int SelectJobs(const TaskState *taskStates, uint8_t numTasks, Tick now, SchedulingAlgoType algo);
 
-
-
-int select_rm(const TaskState *tasks, uint8_t num_tasks);
-
 #ifdef __cplusplus
 }
 #endif

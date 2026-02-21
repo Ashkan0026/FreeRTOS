@@ -22,9 +22,12 @@
     <ClInclude Include="customScheduler\scheduler.h" />
     <ClInclude Include="customScheduler\scheduling-algorithms.h" />
     <ClInclude Include="customScheduler\task.h" />
+    <ClInclude Include="fuzzy_logic.h" />
     <ClInclude Include="sim_config.h" />
+    <ClInclude Include="sim_metrics.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="fuzzy_logic.c" />
     <ClCompile Include="scheduler.c" />
     <ClCompile Include="scheduling-algorithms.c" />
     <ClCompile Include="task.c" />

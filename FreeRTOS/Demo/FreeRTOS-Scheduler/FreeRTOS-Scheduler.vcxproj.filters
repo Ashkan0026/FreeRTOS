@@ -27,6 +27,12 @@
     <ClInclude Include="sim_config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="fuzzy_logic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sim_metrics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scheduler.c">
@@ -36,6 +42,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="task.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fuzzy_logic.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

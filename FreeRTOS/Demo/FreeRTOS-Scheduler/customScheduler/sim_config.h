@@ -4,7 +4,7 @@
 #include "task.h"
 
 // Simulation length (ticks)
-#define SIM_DURATION_TICKS   ((Tick)500)
+#define SIM_DURATION_TICKS   ((Tick)100)
 
 // Log each tick (noisy)
 #define SIM_LOG_EACH_TICK    1

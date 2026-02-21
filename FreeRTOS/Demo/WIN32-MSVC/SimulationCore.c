@@ -21,8 +21,9 @@
  // ----------------- Task set (edit this) -----------------
 static TaskConfig gTaskCfg[] = {
     {.id = 0, .name = "T0", .period = 10, .relDeadline = 10, .wCet = 2, .deadlineTolerance = 0, .isNetwork = 0, .isHard = 1 },
-    {.id = 1, .name = "T1", .period = 15, .relDeadline = 15, .wCet = 3, .deadlineTolerance = 2, .isNetwork = 1, .isHard = 0 },
+    {.id = 1, .name = "T1", .period = 15, .relDeadline = 15, .wCet = 3, .deadlineTolerance = 0, .isNetwork = 1, .isHard = 0 },
     {.id = 2, .name = "T2", .period = 20, .relDeadline = 12, .wCet = 4, .deadlineTolerance = 0, .isNetwork = 0, .isHard = 1 },
+    // {.id = 3, .name = "T3", .period = 15, .relDeadline = 10, .wCet = 5, .deadlineTolerance = 0, .isNetwork = 0, .isHard = 1}
 };
 #define NUM_TASKS   ((uint8_t)(sizeof(gTaskCfg)/sizeof(gTaskCfg[0])))
 
@@ -327,6 +328,10 @@ static void dispatcherTask(void* arg)
     }
 
     printSummary();
+    for (int i = 0; i < NUM_TASKS; i++)
+    {
+        printf("Task %s missed deadlines are: %d\n", gState[i].taskCfg->name, gState[i].jobs_missed);
+    }
     vTaskSuspend(NULL);
 }
 
